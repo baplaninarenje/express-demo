@@ -1,0 +1,20 @@
+<!-- views/createUser.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form action="/search" method="GET">
+      <input
+        type="search"
+        name="query"
+        placeholder="Search users by name or email..."
+      />
+      <button type="submit">Go</button>
+    </form>
+    <a href="/">Back to home</a>
+  </body>
+</html>

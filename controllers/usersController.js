@@ -115,3 +115,9 @@ exports.usersSearchListGet = (req, res) => {
     users: usersStorage.getUsersByEmailOrName(query),
   });
 };
+
+exports.usersSearchFormGet = (req, res) => {
+  res.render('searchUser', {
+    title: 'User Search Form',
+  });
+};

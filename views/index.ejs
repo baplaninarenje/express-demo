@@ -3,6 +3,7 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <h1><%= title %></h1>
@@ -31,6 +32,10 @@
       <li>No users found.</li>
       <% } %>
     </ul>
+    <% if (title === 'User Search Results') { %>
+    <a href="/">Back to Home</a>
+    <% } %>
     <a href="/create">Create a user</a>
+    <a href="/search-users">Search a user</a>
   </body>
 </html>

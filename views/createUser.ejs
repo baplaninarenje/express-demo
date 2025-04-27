@@ -3,18 +3,11 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <h1><%= title %></h1>
     <%- include("partials/errors.ejs") %>
-    <form action="/search" method="GET">
-      <input
-        type="search"
-        name="query"
-        placeholder="Search users by name or email..."
-      />
-      <button type="submit">Go</button>
-    </form>
     <form action="/create" method="POST">
       <label for="firstName">First Name: </label>
       <input

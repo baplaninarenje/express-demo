@@ -1,6 +1,8 @@
 // app.js
 const express = require('express');
 const app = express();
+app.use(express.static('public'));
+
 const usersRouter = require('./routes/usersRouter');
 
 app.set('view engine', 'ejs');
