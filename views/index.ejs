@@ -8,13 +8,13 @@
     <h1><%= title %></h1>
     <!-- In views/index.ejs -->
     <ul>
-      <% if (locals.users) {%> <% users.forEach(function(user) { %>
+      <% if (locals.users && users.length > 0) { %> <%
+      users.forEach(function(user) { %>
       <li>
         ID: <%= user.id %>, Name: <%= user.firstName %> <%= user.lastName %>,
         Email: <%= user.email %>, Age: <%= user.age %>, Bio: <%= user.bio %>
       </li>
       <a href="/<%= user.id %>/update">Update</a>
-      <!-- This time we're sending a POST request to our route, so we need a form. -->
       <form
         action="/<%= user.id %>/delete"
         method="POST"
@@ -27,7 +27,9 @@
           Delete
         </button>
       </form>
-      <% }); %> <% } %>
+      <% }); %> <% } else { %>
+      <li>No users found.</li>
+      <% } %>
     </ul>
     <a href="/create">Create a user</a>
   </body>

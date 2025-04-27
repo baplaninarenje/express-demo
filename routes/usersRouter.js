@@ -3,6 +3,7 @@ const { Router } = require('express');
 const usersController = require('../controllers/usersController');
 const usersRouter = Router();
 
+usersRouter.get('/search', usersController.usersSearchListGet);
 usersRouter.get('/create', usersController.usersCreateGet);
 usersRouter.post('/create', usersController.usersCreatePost);
 usersRouter.get('/', usersController.usersListGet);
