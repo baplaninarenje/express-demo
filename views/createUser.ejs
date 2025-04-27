@@ -24,6 +24,30 @@
         value="<%= typeof lastName !== 'undefined' ? lastName : '' %>"
         required
       />
+      <label for="email">Email: </label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        value="<%= typeof email !== 'undefined' ? email : '' %>"
+        required
+      />
+      <label for="age">Age: </label>
+      <input
+        type="number"
+        name="age"
+        id="age"
+        value="<%= typeof age !== 'undefined' ? age : '' %>"
+      />
+      <label for="bio">Bio: </label>
+      <textarea
+        id="bio"
+        name="bio"
+        rows="4"
+        cols="50"
+        placeholder="Tell us about yourself..."
+        value="<%= typeof bio !== 'undefined' ? bio : '' %>"
+      ></textarea>
       <button type="submit">Submit</button>
     </form>
     <a href="/">Back to home</a>

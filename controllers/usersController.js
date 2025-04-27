@@ -5,6 +5,9 @@ const { body, validationResult } = require('express-validator');
 
 const alphaErr = 'must only contain letters.';
 const lengthErr = 'must be between 1 and 10 characters.';
+const emailErr = 'must be formatted properly.';
+const intErr = 'must be a number between 18 and 120.';
+const bioLengthMaxErr = 'maximum 200 characters.';
 
 const validateUser = [
   body('firstName')
@@ -19,23 +22,37 @@ const validateUser = [
     .withMessage(`Last name ${alphaErr}`)
     .isLength({ min: 1, max: 10 })
     .withMessage(`Last name ${lengthErr}`),
+  body('email').trim().isEmail().withMessage(`Email ${emailErr}`),
+  body('age')
+    .optional()
+    .trim()
+    .isInt({ min: 18, max: 120 })
+    .withMessage(`Age ${intErr}`),
+  body('bio')
+    .optional()
+    .trim()
+    .isLength({ max: 200 })
+    .withMessage(`Bio ${bioLengthMaxErr}`),
 ];
 
 // We can pass an entire array of middleware validations to our controller.
 exports.usersCreatePost = [
   validateUser,
   (req, res) => {
-    const { firstName, lastName } = req.body;
+    const { firstName, lastName, email, age, bio } = req.body;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render('createUser', {
         title: 'Create user',
         firstName,
         lastName,
+        email,
+        age,
+        bio,
         errors: errors.array(),
       });
     }
-    usersStorage.addUser({ firstName, lastName });
+    usersStorage.addUser({ firstName, lastName, email, age, bio });
     res.redirect('/');
   },
 ];
@@ -73,8 +90,14 @@ exports.usersUpdatePost = [
         errors: errors.array(),
       });
     }
-    const { firstName, lastName } = req.body;
-    usersStorage.updateUser(req.params.id, { firstName, lastName });
+    const { firstName, lastName, email, age, bio } = req.body;
+    usersStorage.updateUser(req.params.id, {
+      firstName,
+      lastName,
+      email,
+      age,
+      bio,
+    });
     res.redirect('/');
   },
 ];
